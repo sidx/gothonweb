@@ -1,7 +1,8 @@
 import web
 
 urls = (
-	'/', 'Index'
+	'/', 'Index',
+	'/form1','Form1'
 	
 	)
 
@@ -11,15 +12,20 @@ render = web.template.render('templates/')
 
 class Index(object):
 	def GET(self):
-		greeting = "Hello ssWorld"
+		form = web.input(name = "Sid")
+		greeting = "Hello, %s" % form.name
 		return render.index(greeting = greeting)
 
 
-'''class first:
-	"""docstring for first"""
+class Form1(object):
+	"""docstring for Form1"""
 	def GET(self):
-		message = "First page"
-		return render.index(greeting = greeting)'''
+		return render.hello_form()
+
+	def POST(self):
+		form = web.input(name = "NOBODY")
+		greeting = "%s, %s" %(form.greet, form.name)
+		return render.index(greeting = greeting)
 		
 
 
